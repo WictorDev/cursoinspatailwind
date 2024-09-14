@@ -1,57 +1,58 @@
 
-let error = document.querySelector('erroMenssage')
+let error = document.querySelector('#msg')
 const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-let errorMessage = ''
-
-function logar(event) {
-
-    event.preventDefault();
-
-    let email = document.getElementById('email').value;
-    let senha = document.getElementById('senha').value;
-    
-    
-    
-    
-    
-
-    if(email == "admin@admin" && senha == "admin"){
-        alert("sucess")
-        
-        window.location.href = "https://www.google.com";
-    }else{alert("failure")}
-    
+let errorMenssage = ''
 
 
-}
+document.querySelector('.login').addEventListener('click', (e) => {
 
+    e.preventDefault()
 
-
-
-document.querySelector('.login').addEventListener('click',() =>{
-    
     let email = document.getElementById('email').value.trim();
     let senha = document.getElementById('senha').value;
 
+    if(email === "" && senha ===''){
+        errorMenssage = 'Preencha a senha e o email'
 
+    }else if (email === '') {
+        errorMenssage = 'Preecha o campo e-mail.'
 
-if(regex.test(email) == false ){
+    } else if (senha === '') {
+        errorMenssage = 'Preecha o campo senha.'
 
-    errorMessage = 'Email Invalido'
+    } else if (regex.test(email) == false) {
+
+        errorMenssage = 'Email Invalido'
+
+    } else if (senha.length <= 5) {
+        errorMenssage = 'Senha precisa conter a cima de 6 caracteres.'
+    
+    }else{
+        errorMenssage = 'Não cadastrado '
+    }
+    
+    error.textContent = errorMenssage
+    
+     if (email == "admin@admin.admin" && senha == "admin") {
+        
+
+        window.location.href = "https://www.google.com";
+    } 
+
+    console.log(error)
+
+if( errorMenssage !== ''){
+    error.style.color = 'Red';
+}
 
 }
 
-if(email === undefined || senha === undefined){
 
-    errorMessage = 'Preencha os campos a cima .'
 
-}
-
-})
+)
 
 
 
 
 
 
-error.textContent()
